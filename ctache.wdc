@@ -1,0 +1,182 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cTache
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x3c0216a901db6436
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAAA7Evr0nw0WVZGKe5Uu5laDclTqSI0wCFFpGgxqxjFvMUCFrS2sS1mfYgFKs61E8dQbN6EHVF2aF0CBldZfrxd8SSURqQCX0d+tbip/adem7ccErRc5b/EA6SrHYX/n7tAVOR6sxo+LKv6Ys/hV2HrWrdzgsPqnNAwtfkZvS320tw==
+     code : |1-
+      // Classe de pilotage du dossier "Tâches" d'Outlook
+      cTache est une Classe
+      	hérite de centité					// Hérite de la classe générique de pilotage d'Outlook
+      	
+      	m_sID est une chaine				//Identifiant de la tache
+      	m_sCategorie est une chaine			// Catégorie
+      	m_sSujet est une chaine				// Sujet
+      	m_sContenu est une chaine			// Contenu
+      	m_sDateDebut est une chaine   		// Date de début
+      	m_sDateFin est une chaine   		// Date de fin (échéance)
+      	m_nImportance est un entier			// Importance (n° Outlook)
+      	m_nEtat est un entier				// Etat (n° Outlook)
+      	m_rAvancement est un reel			// Pourcentage d'avancement
+      	m_bAlarme est un booleen			// Vrai si alarme demandée
+      	m_sDateAlarme est une chaine		// Date de l'alarme
+      	m_sHeureAlarme est une chaine		// Heure de l'alarme
+      	
+      	constant
+      		olImportanceLow		=0			// Priorité basse
+      		olImportanceNormal	=1			// Priorité normale
+      		olImportanceHigh	=2			// Priorité haute
+      		olTaskNotStarted	=0			// Pas commencée
+      		olTaskInProgress	=1			// En cours
+      		olTaskComplete		=2			// Terminée
+      		olTaskWaiting		=3			// En attente
+      		olTaskDeferred		=4			// Différée
+      	fin
+      Fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAADD5xXwfNmdH7pA7IYEKVxFiRRPuW9W5q4tzcPZrtzshLRpnc/0JYIpv/IBdhomLNWMBLRd54xkB4pCYFRX/WQXak2BBKEz/x/Rok0W1PiBertXAKTPI/HCQaFj90ohcWS1XQXNoGuoRoFxdnbtkEMKCN1fE9T7Lsd79c0+GrmcDR/21gPe4JO400QRwTfzAFxW0g==
+     procedure_id : 4324043508240376886
+     type_code : 27
+     code : |1-
+      PROCEDURE Constructeur(MonItem= null, clListe = null)
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook ...
+      Constructeur centite(::CST_TACHES, MonItem)
+      
+      //Ceci définit à quelle liste appartient l'élément
+      //En cas de modification ou suppression de cet élément, on saura quelle liste mettre à jour ..
+      si clListe <> null alors :m_clListe = clListe
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 4324043507596420150
+     type_code : 28
+     type : 655360
+   -
+     name : AffecteProprietes
+     internal_properties : CAAAAAgAAAAtJHuVtkeAaGpbaLBXWLxMXc9WK4koMjYl0YXpgGLGJFiNMOR5SBM5QO9uQAsC7v8Q59Qtw2OR81mUpzx4+1+jgq9w/p+jmw80nDffWNICodTISp5qBTc8QhwoBRJG4tzKxQ8nI29bjIEOCjYt33SwAG36OvoL6Wn7N2rFNmCa
+     procedure_id : 4324043521740861527
+     type_code : 12
+     code : |1+
+      // Résumé : Affectation des propriétés Outlook d'après les valeurs saisies côté WINDEV
+      // Syntaxe :
+      // AffecteProprietes ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteProprietes()
+      
+      quand exception dans
+      	// Catégorie
+      	:m_pautItem>>Categories = :m_sCategorie
+      	// Sujet
+      	:m_pautItem>>Subject = :m_sSujet
+      	// Contenu
+      	:m_pautItem>>Body = :m_sContenu
+      	// Date de début
+      	si datevalide(:m_sDateDebut) alors :m_pautItem>>StartDate = dateversentier(:m_sDateDebut)-dateversentier("19000101")+2
+      	// Date de fin (échéance)
+      	si datevalide(:m_sDateFin) alors :m_pautItem>>DueDate = DateVersEntier(:m_sDateFin)-dateversentier("19000101")+2
+      	// Importance
+      	:m_pautItem>>Importance = :m_nImportance-1
+      	// Etat
+      	:m_pautItem>>Status = :m_nEtat-1
+      	// Avancement
+      	:m_pautItem>>PercentComplete = :m_rAvancement
+      	// Alarme
+      	si :m_bAlarme alors
+      		:m_pautItem>>ReminderSet=vrai
+      		// Date & Heure alarme
+      		:m_pautItem>>ReminderTime = dateversentier(:m_sDateAlarme)-dateversentier("19000101")+2  + ((val(:m_sHeureAlarme[[1 à 2]])/24) + (val(:m_sHeureAlarme[[3 à 4]])/24/60))
+      	sinon
+      		:m_pautItem>>ReminderSet=faux
+      	fin
+      
+      faire
+      	liberer :m_pautItem
+      	erreur(ExceptionInfo(errRESUME))
+      	RepriseSaisie()
+      fin
+     type : 458752
+   -
+     name : RemplitTache
+     internal_properties : CAAAAAgAAACJe9HmD3+8fncpEeVrloOKDxJfgChUFNRLkvEVlO3qTMbyDsaVpUDQ5kyWw80hYRGyB3rV9TRzByQ0wYXRhyUqFYyG2P5QNSyQe/jUY9QhDZuaM2gGTYsp2JJo6b2crSlae4YBxCmAa1Zq4Lw0HPC4lEBy3FzD9zzEWCb7odpTViR4OJM2sUM+A/lMsdX0D53npo5WL7etvywSqGB+ERnAuLaAhaQ0VgGRDm6HdiZQYQHWeg==
+     procedure_id : 1886595660890461934
+     type_code : 12
+     code : |1-
+      // Résumé : Affectation des membres de l'instance à partir des propriétés Outlook
+      // Syntaxe :
+      //RemplitTache (<clListe>)
+      //
+      // Paramètres :
+      // 	clListe : Liste à laquelle l'élément appartient
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure RemplitTache(clListe)
+      
+      // Récupération des propriétés de la tâche lue préalablement
+      sDateHeure est un DateHeure
+      
+      // Identifiant automatique géré par Outlook
+      :m_sID = :m_pautItem>>EntryID
+      // Catégorie
+      :m_sCategorie = :m_pautItem>>Categories
+      // Sujet
+      :m_sSujet = :m_pautItem>>Subject
+      // Contenu
+      :m_sContenu = :m_pautItem>>Body
+      // Date de début
+      sDateHeure=:m_pautItem>>StartDate
+      :m_sDateDebut = sDateHeure..Date
+      SI PAS DateValide(:m_sDateDebut) OU :m_sDateDebut>"29991231" ALORS :m_sDateDebut=""
+      // Date de fin (échéance)
+      sDateHeure=:m_pautItem>>DueDate
+      :m_sDateFin = sDateHeure..Date
+      SI PAS DateValide(:m_sDateFin) OU :m_sDateFin>"29991231" ALORS :m_sdateFin=""
+      // Importance
+      :m_nImportance = :m_pautItem>>Importance+1
+      // Etat
+      :m_nEtat = :m_pautItem>>Status+1
+      // Avancement
+      :m_rAvancement = :m_pautItem>>PercentComplete
+      // Alarme
+      :m_bAlarme = :m_pautItem>>ReminderSet
+      // Date alarme
+      sDateHeure=:m_pautItem>>ReminderTime
+      :m_sDateAlarme = sDateHeure..Date
+      SI PAS DateValide(:m_sDateAlarme) ALORS :m_sDateAlarme=""
+      // Heure alarme
+      :m_sHeureAlarme=NumériqueVersChaîne(sDateHeure..Heure,"02d")+NumériqueVersChaîne(sDateHeure..Minute,"02d")
+      
+      
+      :m_clListe = clListe
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d131b516c
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

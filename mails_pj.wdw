@@ -1,0 +1,290 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : FEN_PJMail
+ major_version : 28
+ minor_version : 0
+ type : 2
+ description : ""
+ subtype : 0
+window :
+ name : FEN_PJMail
+ identifier : 0x28299578e0aed0db
+ internal_properties : CAAAAAgAAACQ05V/KM77b5jk3Y811lvoq5gHrfjb5kdTIvAkXvGNgr+2nrQm5bq9iS0ACJTmSPuQb7EqskaWmM5f2eqK939WvmOxZeMpBvGi1APhZ97PTPnnIZ0grKp+7JpnQjMyyeQfQA/xDa04iRnTBNhuoIH6Ps0ng5bbC8KeQtN/oiLYODk9UV6bpyuVgaYudz0g2hL9KiAiFcvUp31QJIRzwUhlZGKbcaSiRYJ2XM/WpSPbE1SkM8uVRG6G93hbTNM+vFN06yH2bpEXx8g1B9pkHd/95Z6aCu3pMyeT1uaUuoqXG40yGGv6GvjzbHeaVlUgs5P17Tknet+WQazG3x6x3cVUHw6X0BVtDXChanYsM4GZJwGM/92C/2YSij5zI1M/YLoobYkP2MY/8KJb5/jAgLteFCg5BAsaEb5kuLkYeTFsUyA8oL9vGZ9NlFFy+Xp2RXCVa5ze8mOR+llfvDgJvp9ZA1tu9xKpTzsIqN5LXnmcStJuQip/Ady7WBB8rRcw9E2htMrb3QDjL9hHxwyCT6Yvc8lJiaHUTc8V1MF+DtAYNSXl2Z8SQCnuN4uDay08lQSzcXxmbVT8oX4KecRUmwF99VF+YBqI7e7dZRceht1WVqBoP75ZhkL3owG8DRe+Tq//5mps6LUdSr98Xb0HhI8qD4HtKaOX1EG1D2OAnqm2Yeor7qi/BpGESa5YT5tupfyUP5V88vGdXqC8IMt0z59V2XfL7VHaTqAU9+7R9a46vTuRg1R1109UbMtKYhBTmHpwO4RkNG7c+snzLHuB8dpHessnCy8=
+ properties :
+  x : 120
+  y : 50
+  width : 386
+  height : 249
+  widthClient : 384
+  heightClient : 217
+ controls :
+  -
+    name : LIB_Titre
+    identifier : 0x28299578e0b2d0db
+    internal_properties : CAAAAAgAAABNdUnbYE1zidkFZ24ne+iIeelPedpFascKPLlaBjbw8vL1+osrENaKu/h+uYYmm6MtbUMsZfbqrIRmSu+FHxezuaoZexDCVzA1cuHmU5F0y1WkYgGssIYRvVHkooOFgE5Djai/9fl08hNr8Xb18L6WGpEv+jr+kXw2NNKU+2cSGklNYQHeRyHhU0JRBPsECbNyolsPbXNfuqAQy2dTVuHOHsI1YIXE3LfT58Tqf4FetFn395wqe2tqGKPXQcalhGuk/0zp5ApMd4hDf9ADBftpwCmg0UNDx9Bz5dhpj/is1oDRZK/V4X+eCdWTj8czAjclgusAjJghjII/Hwb7xkZrxg8cLcApxbiFhTFgqdE5zBKyYyBSwy0RSXvNwWSWafcTgN6Sjo6JLi0lNplXbXI6xB1+Cu1I7GHKcqmvWn+0tRFqJFZb6+GKpxmPju3v+6hClXDd5ROTRyqoWaXycxAR+c98d1n0KCJfaRo/fg+PzNU8zA==
+    properties :
+     x : 6
+     y : 17
+     width : 347
+     height : 20
+    type : 3
+    code_elements :
+     type_code : 2
+     p_codes : []
+  -
+    name : IMG_PJ
+    identifier : 0x28299578e0b3d0db
+    internal_properties : CAAAAAgAAACxEnoK7bG3Buh/p4uE5HqqIhyU0SvnVacJW0gU5/eW2TpfQlKBdAxOVU2AMMqeyK92iEU+GnBX0SfH87wH8EE1w+JIkJ10L8aGM71sZ0X/lo00ZASiaPolH2nMlrOifWqUV2PrVWd7qjA95kyWIq3tpYdXabWVRS/lUiDo+e7Dj+BR72g2WvIqITCmJcXt8TV2h+aoz6QTKYSiQV67RQgbdWdrHthTWgnO7iANmw75g+g0Cq8mp+6eL+L/p0QTfmE+Fccif9qTkc829gCJVel3xxLuNmuRVjnrCKjb9pV5v8hiQOR6kwIXWOBa80ZooswEFLso3j3NkpS8560q4Fu3Hn5oGKMyx4JepY7ojxaEypgPn8gnU/DWQCsXE026FBgmU10xXBFORjZyLNfDpW8M1MwMmPKBt9wzC0IAN0Vzso4vUYM/29oX3fn2MbmHyTD6AG0P8eKtBDEs7za0/aOEeqrsUJVT2X4FO1jNNn4xxlKC4NcHlekawLb6aomzTweHk2LveR7PB+4a0gPSyOZdiXXdEwS5ENl+zRz9lDIn/sXDaLS52DLW01XsAbK6xA==
+    properties :
+     x : 17
+     y : 58
+     width : 63
+     height : 50
+    type : 8
+    code_elements :
+     type_code : 8
+     p_codes :
+      -
+        type : 18
+        enabled : false
+  -
+    name : LISTE_PJ
+    identifier : 0x28299578e0b5d0db
+    internal_properties : CAAAAAgAAACFUN+aGUCA/fxmLZsw71E9vIfGGVW6SctnILyu5kYXc1tnj8+JH0twgvX21ez+Rg9uIRRXEBtqH6HMHecG9DEQWHUkJP3tf75h9ufnCXBe4OKqftM1B+GDyrrozDu6LOPLqeas7He7czxiwAcZh5M5SpN7XxnruN8zsgsbRZhz5EkS3Oh07YwRMRo28Mpv40ABYlyh20YCD2sVed3if6oJ6tZvYlu3oIJbcabcpf70uaRPN0fyaWSM5Oi0VuTmO/iSAgS0KIHJyoJnLfMlElj0zXolYK6UGUlHJw1zgguUo0mVPYa6i/WjIYB/6uJf48HjscYpE3ZuQJfanNMK/z1urLBIVq1NT+UzbaLp62WUatU/rmnhU9wOUPC7kSwIx4jaW9FcUnWTlVTG4wOzdi0klQ6cDTZ3bnaUYfIBgYJaUiEzSmSwepMmf0Mvcg/tByKAqOqsYq3poM+ySTim/Oype4lvT8imgVDdoJoBrQiqu9Si5jzaOO+XcQIAtfuqBxfXv876uWOi++DenYU8+SH4tt0Zy7pDs4674fEuoeynJDkd8FC/MUbiTVgUVJ1YLeIxMfRhS1k6P9L57pKRpPkrJ8pGo2MVYDpyGjOBtmueb3YY5ZJkdnmNWscvCglzBwl5XUiE9+hEzpuE6AUfBjVhkaG5cddtcnMUJO53hv3Fk42yW9VdyZk8Ohr8RTywUqLiZQzhjUXDdvl2qXDv0oroTOVVSqhZg7iI7rj9euQhFD2KQr0+/WXtBdWrcNux4s0HVDGoo+O+sILrD+1v2v6B7a3wnkuhGGcp1zk0LSdSeejogYqzZsPc8FCIw133Zh2NFQx7UQNRWbyGfxBnnRvo9gqRD4FkEAO7YuK4RYzTeuQFqaDgyMIP2GACGSkknFhH2ycIlzz+mxpM+q+6ndsgJUZqZOrwIAZWEd2cM4c6J91aDTy8Eb462WuykW0s1NNELPruF+hn+JAYuOFE4nJCuVInYblp7ZrfDrmA1Hgf4093GoXbxjVyw5wb9AkyI1p912sy3FxAOAaKgZP2dhtbDOJ+
+    properties :
+     x : 90
+     y : 58
+     width : 242
+     height : 106
+    type : 7
+    code_elements :
+     type_code : 7
+     p_codes :
+      -
+        type : 35
+        enabled : false
+      -
+        type : 22
+        enabled : false
+      -
+        type : 24
+        enabled : false
+      -
+        type : 23
+        enabled : false
+      -
+        type : 25
+        enabled : false
+  -
+    name : BTN_Ajouter
+    identifier : 0x28299578e0b6d0db
+    internal_properties : CAAAAAgAAABsjuL91bgDZw5pl2YqGn8AvDTT07XMzPlInaIyxHQYEybAJSxF2MxYO09QO7NB4dK72oBnDtZEl4Acw0D8b69DrAQzLk9Tep3HUTxpIDUoMd7dXlCU8cl94LXe8tpyOmm5EQs0DXfZPviVev6AiP3wLLW+gOb+9VkXfbPsgJqaXqmGBr4UBUDdl41aOIzdaH/4Kse2aVXk1jNHWar+j30SDG03J0JUrBDJD/wS7/y7urNBNWkpixcAqIl/ZvkfCD6ckJOoaxQnLpCoDCWzhOmfA8f99VAHvryitsVV55CbrI1pIMUvby+Ydz/WagPsphSWqX7uZRlO1oq7+EYjuq6FmxB3LZxgnTtEqcD0EZceppBf1jOXh93EiTOwhseUL3Gj7lcDh9dF7lDN2GdaY3o8qtEcY04kKEPiwG0ixzD5QZddxvcRYv4wVqMtzogjPX7XEtIPbJyRm3NiYZILJa9gh7oG92yW+iSZLIUffJ5YfYW6NSRqlEPPw4qL7/Rm2571lJRinmNgWTGvWPF2EbJkSSpVXEbd5oMXgoRT7cm8HwfDwnLCAuddra3QUjnH/anBvia97Q4yeREuikKCdo5idWLIILRHInDD6EIrlcwO/z8LdlcQ28itzkPdsFEcftZlJPTFH80vM27xvIdRQ82He2yFXZMiibCcZNg0gfB6zrIdb37uxZbrJmMxLADL1tiCUc91ADi1rU4j6WpAQz6ZnJC5CICKIsV+U64p
+    properties :
+     x : 339
+     y : 61
+     width : 27
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         // Sélection du fichier
+         sNomFic est une chaine
+         sNomFic = fSélecteur("","",<§$0000§>,<§$0001§>+tab+"*.*","*",fSelOuvre+fSelExiste)
+         si sNomFic~="" alors retour
+         
+         sNom est une chaine 
+         sNom = Fextraitchemin(sNomFic,ffichier+fextension) // Nom du fichier sans le chemin
+         
+         // Déjà dans la liste
+         si listecherche(LISTE_PJ,sNom)>0 alors retour
+         
+         // Ajout
+         gclMail:AjoutePieceJointe(sNomFic)
+         listeajoute(LISTE_PJ,sNom)
+         
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : BTN_Suuprimer
+    identifier : 0x28299578e0b7d0db
+    internal_properties : CAAAAAgAAACr8uhhBRepnY6Owkyh8tVAIZQc/h4gw7pOGsPWtBrNhCL5K4YEnwyHaqyYkJilZjfmZ/AZf6rZao3Nj2a6w7fyQUxt8rIuoyzrBA5yQIA/Smv97vFT8mPi5LOwwzRdYD/xnYahc3NQLp0rgUWOWudWLLI6K3MD+WHTzBwk4hog6atylhVjIKb+5j6UH7Xa9HJjRMqINQ75QbzKPphG5bKu/nZtOsKZY+z3UwQwGK5Bm2qnCZUtjnYJYc05Biq4JmbAmsZfpgmutLlAXT4220pSxktv9XxUDHl1LYgLUd1ac04RJJvvd6QpRzGOZul8fL9FLkEgSuVMuDbxbxO+rndOW+x4H77OX5xHaAZc/fSp5EUfbxpvRwbZ2jtC8Eykz8VB/hTb2xf6+1lMCxk20DJLDhbfe71hByMI+4lGORPWP6fxdO1IPblPTTgxUPCzXs6d+TnZYQke3yMK+ppCYvGlBR/HGYCYbptbAKruXLw0Rak+pUGjkkuAsDZPRx1yRQpTazK9dj745Z9QyhWZ51aRL/gM9YY8/+ovnnwPrNJlQPQxppQjbAHIzi5OoFFp6ny3qK0aNuRI4wyI/6ieRuqRWH39qoAhapfikNtLoyT6n+7APWMuEkEnTlJa+jWvr8o+hS0puH19jIF++TN32K0KPpyt8KZoR/iyAJy3BJYgFQ1il0/C/hhAULeGSc+oaFNggS1exjsumYtJ5Dd1AtxPcCM2MEp5bQEnnFP+b42kpw==
+    properties :
+     x : 339
+     y : 90
+     width : 27
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         si LISTE_PJ<1 alors
+         	erreur(<§$0002§>)
+         	RepriseSaisie(LISTE_PJ)
+         FIN
+         
+         // Suppression
+         gclMail:SupprimePieceJointe(LISTE_PJ[LISTE_PJ])
+         listesupprime(LISTE_PJ)
+         
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : BTN_Voir
+    identifier : 0x28299578e0b8d0db
+    internal_properties : CAAAAAgAAABv9PtjVWWCFPvmjn+d4lmAlDf0XA3zVu6un9aEmfDn6o3hW264AQw+s6tr89E+bZGHZwR4UCohAmc1PsLvsUmJoUJvNzes3aLA5nAMmb/GtnDpyMgiftmA6oBqEgwTmv5GlstBJOGou3qme6avFiI8oRHYYVN5+IN4VQP1sM4VOPGW1+lPHr5ZK7Gyoxwy5onn7YHt34q6yl35zZLawfiQEDJaZ9vBXAih1bMjNSc2d/2wSIMshmRc2F6NFwKfbWPGlUhG+kW0vL8WvbHyOgyOCb+wkZXvdASwi585EM7axlqoOUNBnmUfkdPjUeaddi3RoOOzL1TfsUnRgsCQOHxIBtXZHEiI2gCvFLCtOE16QeFMd8/M9NRWhMFuVLN4MSiLz6LkQezWwMan1CBsZnwEY8MugMOSN8EyNEpmwBJHLkvw8xoVPetLPR1Akg0crHB0iH7DPexkIDTzNlwS36B1XxeDYfOsQJA67guDW1TqCUZTPS/6HUiPwLbcgmwNKDiJiA3/PCBu/E2MR2j9Lv39aAoEOX6RnZZ7oD9ut9XNA7jyysK7a0sLHaBcSjFYOVtWBtPLlRLyNPDj8sA8G/Qk6r1jUueNErZFGKzL6aWP3msq3bW886addVel4d6lxAVNQwL3faaAx4bihUTygZdUHJWseOWTTik6OOdztRFCVnNgg70mtwcGjt/V1jYDi9srGAanjx9qaDdlQqJ3+eX7CAse+17vFhtur2Q8na6xhcLlZKpVWtmySx2Xe+6bb1bY216FFcaIZ0iBoAseiOhdlEa4xuT2U6MmnN36Hiw/T6Kgggn8vmWDALGNv3cgEFH0J1PiZYoTmTKD+PbqU4u0fbZjzzZvyPXpZJt9nxubUaVEJRl69v54gzIl1gPArLjjLe6DsOs=
+    properties :
+     x : 252
+     y : 172
+     width : 80
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        internal_properties : CAAAAAgAAAA/27sAZbtQfW6SH/x+7p4rOKAehF2N+hGbzCLIhLM33/yhFS0KuZ8bNCu8QbPmNa7Dx83Lpm+MH4KHi4jJvfvOcNxKIN808oBIiWfaik4huNb7nuaoNJKdcHnIcNSaBR/olPMHSUzA+xHT8b4bOrwaocDMDEeu17SPUMgtg6Cwsw==
+        code : |1+
+         si LISTE_PJ<1 alors
+         	erreur(<§$0003§>)
+         	RepriseSaisie(LISTE_PJ)
+         FIN
+         
+         sFichier est une chaine
+         selon sMode 
+         
+         	//En création d'un nouveau mail, on n'a pas besoin d'extraire la pièce jointe pour la visualiser .. 
+         	cas CST_CREATION :
+         		sFichier = gclMail:m_sRepTemp+"\" + LISTE_PJ[LISTE_PJ]
+         		
+         		
+         	cas CST_MODIFICATION :
+         		
+         		// Extraction de la pièce jointe du message
+         		gclMail:sExtraitPieceJointe(LISTE_PJ[LISTE_PJ])
+         		
+         		sFichier = fRepExe()+"\PJ\"+LISTE_PJ[LISTE_PJ]
+         		SI fFichierExiste(sFichier)=Faux ALORS
+         			RETOUR
+         		FIN		
+         		
+         FIN
+         
+         
+         
+         // Affichage avec l'appli associée à ce format de fichier
+         si lanceappliassociee(sFichier)=faux alors
+         	// à défaut d'appli pour visualiser ce format de fichier ...
+         	info(ChaîneConstruit(<§$0004§>, sFichier), <§$0005§>)
+         FIN
+         
+        type : 18
+      -
+        type : 161
+        enabled : false
+ menu :
+  name : _Menu
+  identifier : 0x28299578e0bad0db
+  internal_properties : CAAAAAgAAADAfZ27Q+jJ/MBXHLGCb7PyE2Yqjvuo9mAX2ZN+LLuyQtzms1431znXR0sNCCeLESXZp1gqmo+m2mUhb2ELR2phZ8VOgUSyXddfQyxpxffipvH/iiFuFkCLgpjx1Ah9/9/ndeRpWb0s9Qcjy8oPtW3aMcRtuglgDe5Ch9/jnC/Drp19/hhf+qz96diLw5T0yWlzg33c/E8hhMwUBdSOV69/8iDQGLfTvLoTvV3YkiQ5Dce7dxB2gUx1AVvVTykQMm7G+0haIOV568KMGgPEJluRN2XjgQ11Tb8vVxt6P2g=
+  options : []
+ languages :
+  - fr-FR
+ popup_menus : []
+ message_bar :
+  internal_properties : CAAAAAgAAAAuUSbMNsxgdbfFHY7ZVsciteTBltOyDyW0rRT97Ocyp+odAfxGKFSUQfEaAjCha6kOy0UPkbG9ZXlf+WwESWy8VwwySssS40eEjAR8dkpQW/IbvtSAUPdcXBrjmr2qBRY=
+ actionbar : {}
+ code_elements :
+  internal_properties : CAAAAAgAAACXiHbz5sxAgg5oBw263mrRnl5QmeWZ2tcO8dL8nvaYYNJAxuxYRbm37sT8zEv+32HGTo1rg0gLMk+wPSg2esA=
+  type_code : 1
+  p_codes :
+   -
+     code : |1-
+      procedure FEN_PJMail(gclMail est un cMail, sMode=CST_MODIFICATION)
+      
+      
+      global
+      	gbOK est un booleen
+      	
+      	// Affichage de la liste des pièces jointes
+      	// NB : 
+      	// PJ=pièces jointes reçues
+      	// PJ2=pièces jointes à envoyer (par défaut : celles reçues)
+      	
+      selon smode 
+      	cas CST_MODIFICATION : //Cas de visualisation d'un message reçu
+      		POUR i=1 _à_ gclMail:m_nNbPJ
+      			ListeAjoute(LISTE_PJ,gclMail:m_ptabPJ[i])		
+      		FIN
+      		
+      	cas CST_CREATION : // Cas de création d'un nouveau message
+      		POUR i=1 _à_ gclMail:m_nNbPJ2
+      			ListeAjoute(LISTE_PJ,gclMail:m_ptabPJ2[i])		
+      		FIN
+      fin
+      
+      // Création du répertoire de travail si inexistant
+      gclMail:RepertoireTemporaire(fRepExe()+"\PJ")
+   -
+     type : 180
+     enabled : false
+   -
+     type : 230
+     enabled : false
+   -
+     code : |1+
+      renvoyer gbOK
+      
+     type : 2
+   -
+     type : 11
+   -
+     type : 12
+   -
+     type : 17
+   -
+     type : 13
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : mails_pj
+resources :
+ string_res :
+  identifier : 0x3c0216ab49a268f2
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      fr-FR : Sélectionnez un fichier...
+     index : 0
+   -
+     text :
+      fr-FR : Tous fichiers (*.*)
+     index : 1
+   -
+     text :
+      fr-FR : Sélectionnez la pièce jointe à supprimer.
+     index : 2
+   -
+     text :
+      fr-FR : Sélectionnez la pièce jointe à visualiser.
+     index : 3
+   -
+     text :
+      fr-FR : Pièce jointe enregistrée sous <%1>
+     index : 4
+   -
+     text :
+      fr-FR : Le nom du fichier a été copié dans le presse-papiers.
+     index : 5
+custom_note :
+ internal_properties : CAAAAAgAAAC68/W0/adbG0nFCRhrE42B5HRnbDzVHaz86sSQyxlBk7I=
+rad :
+ internal_properties : CAAAAAgAAABoAN7PLpwJW3EiA7WVZdCA5EwrCA1rvutcDHooMWKe

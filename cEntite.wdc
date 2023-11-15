@@ -1,0 +1,171 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cEntité
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2e9b290cad3933
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAABTjT0ZiT+j1AokcN5US63JMH5tiKw1fVzSvZEPlg2fJ/QQt/J+S9ovlcU5OShAX2EfxJbt7iexQqADD+YpwhUamEw/opKoiLzh6fSaY6cFYxaWUNR9lKcYQX/aTYN/Cxc6l1/cnbT37o9y32cmyhdROxCdMz/MiEPxragjTZr557daB+7RXBk09ndLgGdOlA==
+     code : |1+
+      //Classe qui permet de gérer une entité de Outlook : un mail donné, un contact donné, une tâche donnée.. 
+      cEntité est une classe 
+      	hérite de cOutlook
+      	
+      	m_clListe est un cListeEntités dynamique 		//Permet de remonter à la liste à laquelle l'email, le contact, la tâche .. appartient 
+      	//pour les mises à jour notamment après modif, suppression ou ajout
+      	
+      Fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAAAiBDJ/GcYT0NKHQCgwYBofINB1yMM9zYS1tKofv3G82GRJPeLShV9vW0lXqJ1SoALJpAwdExgFG24EP4I9UEjSfwGFiRRRsF2JMp7eDBvnfa9hWAhjAnJSSUqbnNc+LyWCFAxC6isaAuMKez8GINgU7AdUJ+ARrYfpEntMp4S1rQXkWxMDNifVw3RsaAbXYOjyW5qzgw==
+     procedure_id : 1886615894523525427
+     type_code : 27
+     code : |1+
+      PROCEDURE Constructeur(sDossier, MonItem = null)
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cOutlook(sDossier, MonItem)
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1886615894523590963
+     type_code : 28
+     code : |1+
+      Procédure Destructeur()
+      
+     type : 655360
+   -
+     name : Modifie
+     internal_properties : CAAAAAgAAABgp22Y/RThNPx/diE2v3qtBrhG1VduaA9CSSwimkRFwcnppeaXUdxKBl2LREZ35WIhXWCNcxegMQ239drZrgV8ZlMeRklGa2ZOaJItsrSbSPS91GSzzjjwHozTyFpElxw4LiP+3Ov6VTSMhq1LH0tk2YDhUPynxKREQFfLOJ2UzDzuw5rfK7BSilS1rPIDBnhTK8SQjeQ108tL1sMxKMnIA467H+GyBorU0KHehyPhOdg=
+     procedure_id : 1886616023372705472
+     type_code : 12
+     code : |1-
+      // Résumé : Modification d'un élément dans Outlook selon son identifiant
+      // Syntaxe :
+      // Modifie (<sID>)
+      //
+      // Paramètres :
+      // 	sID : Identifiant de l'élément dans Outlook
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure Modifie(sID)
+      
+      QUAND EXCEPTION dans
+      	:m_pautItem = :m_pautNameSpace>>GetItemFromID(sID)
+      	si pas :m_pautItem=null alors
+      		:AffecteProprietes()
+      		:m_pautItem>>Save()
+      	fin
+      	liberer :m_pautItem
+      	
+      	// MAJ de la liste des items en mémoire, en appelant la méthode de maj de la liste à laquelle l'élément appartient
+      	:m_clliste:ChargeItems()
+      		
+      faire
+      	Erreur(ExceptionInfo(errRésumé))
+      	RepriseSaisie()
+      FIN
+     type : 458752
+   -
+     name : Ajoute
+     internal_properties : CAAAAAgAAAA0DccrXHuXrv5PiOkhnsLMNKC76iiEsh8eDDWi98ooV+xmOJegzN6W+JewRRs5DRfUNZunSellnYNsXlEB3rht9feSXSRR+hl6Bt+xAKxYFw5pmlyOOrVCpiUp90QoF6O8wVDSgGZ8eF/uDQfUqLYe2pFtMZzdRS/rHixwcReVWr1p0S1ovBkZXdf95t3qot9jKVSRmlbboZ+h+Jbmz4lbDLbsMLKIVh7H4JjS0ynN4A40UDiUDDDPbZtKMF19RQ2msYiLehOBiW2++rfvrVAb8LYWWuLZKzL/BrA1SL2w0RZalIoE2A5H27x2u+VL3aeVUO6aYM8+FHKlS4ykBCSCV7DdGuQVqueQ/JT4Quzz3rI9lNX/lzCd2Zn411xxGJv7u94Fl7XkigemMvTFXNr1Hou2tZDg+Mc46CTQyJh6nj+ei+fjmd0c
+     procedure_id : 1886616817941709364
+     type_code : 12
+     code : |1+
+      // Résumé : Ajout d'un élément dans Outlook selon son type : mail, contact, tâche..
+      // Syntaxe :
+      // Ajoute ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure Ajoute()
+      
+      QUAND EXCEPTION dans
+      	// Crée un item dans Outlook
+      	:m_pautItem = :m_pautOutlook>>CreateItem(:m_nTypeItem)
+      	
+      	// Affecte les propriétés selon le type d'item
+      	:AffecteProprietes()
+      	
+      	// Sauvegarde
+      	:m_pautItem>>Save()
+      	
+      	liberer :m_pautItem
+      	
+      	// MAJ de la liste des items en mémoire, en appelant la méthode de maj de la liste à laquelle l'élément appartient
+      	:m_clListe:ChargeItems()
+      
+      faire
+      	Erreur(ExceptionInfo(errRésumé))
+      	RepriseSaisie()
+      FIN
+     type : 458752
+   -
+     name : SupprimeElément
+     internal_properties : CAAAAAgAAABWT4+C8xbfbtr5xOs0gbRpGvpIS534Hjn4U1K0AMY/+BH16pYXsbyalo1LZCb3RcJhjTD9w2fQkW1XRSrJnnXMdnOehglmi/a+WFINEvQ7aFTNpNQj/gjwxiS7EJI878QwxjvGBJOyrXyEjjXjd6PMsTiZGCTv/PzM2P8TsBVsNDQm+8Jnc8hqkiydlOrrmdUcr7CQdexBd6vfMoPBBBWoLb5r4yXGLjqYsJnSkze1R8Y=
+     procedure_id : 1886859625166216649
+     type_code : 12
+     code : |1-
+      // Résumé : Suppression d'un élément dans Outlook selon son identifiant 
+      // Syntaxe :
+      //SupprimeElément (<sID>)
+      //
+      // Paramètres :
+      //	sID : Identifiant de l'élément dans Outlook
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure SupprimeElément(sID)
+      
+      QUAND EXCEPTION dans
+      	
+      	:m_pautItem = :m_pautNameSpace>>GetItemFromID(sID)
+      	si pas :m_pautItem=null alors :m_pautItem>>delete()
+      	liberer :m_pautItem
+      	
+      	// MAJ de la liste des items en mémoire, en appelant la méthode de maj de la liste à laquelle l'élément appartient
+      	:m_clListe:ChargeItems()
+      	
+      faire
+      	Erreur(ExceptionInfo(errRésumé))
+      	RepriseSaisie()
+      FIN
+     type : 458752
+   -
+     name : AffecteProprietes
+     procedure_id : 1886918204266133973
+     type_code : 12
+     code : |1+
+      Procédure virtuelle AffecteProprietes()
+      
+      // Cette méthode est redéfinie selon le type de donnée à écrire :
+      // Note, Mail, Calendrier, ...
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d136551c9
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

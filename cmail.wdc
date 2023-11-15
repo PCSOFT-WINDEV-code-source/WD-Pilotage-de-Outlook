@@ -1,0 +1,474 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cMail
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x3c0216a9685663c8
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  internal_properties : CAAAAAgAAADlRnm65mHRsFK2zhWfLm9DHformOHsRsffLNJ0Ng0HnQHwnGm/nv56k77nRpR5VKlFae7IBVP3i3RTKtnygzDbj32VWHTbMG69BdNqkHRH6e4owFZiNA8Whfp0IiNcGp7xUW7QuqK7TAAv+fU43Knw7cxDjBo/aCksmOZ8IRbaSg6CgHNKCr4dv0Okhu8b8ZH7odtqQ/mu674xq6Uj40OeF38RpXGaU0FJC0Tf1F20wkP3f9LxvwTjc3pWArqYcsxdh7WLo530KTypkny8+n+zkJHwRpG30izRyNJj8+rhfHghVk0YOnysDz+FEQ0Agc+Ao9f92QKbuFYABygssV0OpXp+lGArcY5d0KL8di+bOPVz
+  type_code : 10
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAACrjbLJVcdzNg8MPzqkbxDpo/3s/GjNg1uPMtMAqDVvL3E8jlgz0PHN2MMj9GhGPd632tqwIFRClO5NuO3AEP5UXaEkayVMOCi0vlKMtvLYKvsZaEOaiyaX0LidNHfhV4TFpReBAmhe8uT2F0w=
+     code : |1-
+      // Classe de pilotage du dossier "Boîte de réception" d'Outlook
+      cMail est une Classe
+      		hérite de cEntité					// Hérite de la classe générique de pilotage d'Outlook
+      	
+      	
+      	m_sID est une chaine				//Identifiant du mail
+      	m_sSujet est une chaine				// Sujet
+      	m_sContenu est une chaine			// Contenu du message
+      	m_sDateReception est une chaine 	// Date de réception
+      	m_sHeureReception est une chaine  	// Heure de réception
+      	m_sExpediteur est une chaine		// Expéditeur
+      	m_sDest est une chaine				// Destinataire	
+      	m_sDestCopie est une chaine			// Destinataire	en copie
+      	m_sDestCopieC est une chaine		// Destinataire	en copie cachée
+      	m_nNbPJ est un entier				// Nombre de pièces jointes
+      	m_ptabPJ est un tableau dynamique	// Tableau contenant les noms des fichiers correspondants aux pièces jointes reçues
+      	m_nNbPJ2 est un entier
+      	m_ptabPJ2 est un tableau dynamique	// 2nd tableau pour gérer la liste des pièces jointes à transmettre lors des réponses/forwards
+      	m_sRepTemp est une chaine			// Répertoire de stockage des pièces jointes
+      	
+      Fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAADD5xXwfNmdH7pA7IYEKVxFiRRPuW9W5q4tzcPZrtzshLRpnc/0JYIpv/IBdhomLNWMBLRd54xkB4pCYFRX/WQXak2BBKEz/x/Rok0W1PiBertXAKTPI/HCQaFj90ohcWS1XQXNoGuoRoFxdnbtkEMKCN1fE9T7Lsd79c0+GrmcDR/21gPe4JO400QRwTfzAFxW0g==
+     procedure_id : 4324043509246288840
+     type_code : 27
+     code : |1-
+      Procédure Constructeur( MonItem =null, clListe =null)
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cEntité(::CST_MAIL, MonItem)
+      
+      si clListe <> null alors :m_clListe =  clListe
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 4324043508282909640
+     type_code : 28
+     code : |1-
+      Procédure Destructeur()
+      
+      // Suppression des fichiers temporaires (pièces jointes)
+      si pas :m_sRepTemp~="" alors frepsupprime(:m_sRepTemp,frRécursif)
+     type : 655360
+   -
+     name : AffecteProprietes
+     internal_properties : CAAAAAgAAACGqSG9yMM8Y5K9bt+k+rPalojMC+kgPNDhmZkVj6FHGXwysMB1TkcqH9Gl85vT/t908sC8iSAxrs878/K36DnlAKrd+BBbL2sydKUdOLOHJK7d8i4MHD2LkLmfpwT7tDI4G1VRcxo8777JyBBTjuiulcN/R+cezgyWI7tsdurE7xt2iCRN05eDJXZCbG3Bjs/AF3wz2E84znxqrbwstnGC
+     procedure_id : 4324043520446984129
+     type_code : 12
+     code : |1+
+      // Résumé : Affectation des propriétés Outlook d'après les valeurs saisies côté WINDEV
+      // Syntaxe :
+      // AffecteProprietes ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteProprietes()
+      
+      quand exception dans
+      
+      	// Sujet
+      	:m_pautItem>>Subject = :m_sSujet
+      	// Contenu
+      	:m_pautItem>>Body = :m_sContenu
+      	// Destinataires
+      	:m_pautItem>>To = :m_sDest
+      	:m_pautItem>>cc = :m_sDestCopie
+      	:m_pautItem>>bcc = :m_sDestCopie
+      	
+      	// Pièces jointes
+      	i, j sont des entiers
+      	pour i=1 _à_ :m_nNbPJ2
+      		// Est-ce une pièce jointe qu'on a reçue ?
+      		pour j=1 _à_ :m_nNbPJ
+      			// Oui = extraire la pièce jointe du message d'origine
+      			si :m_ptabPJ[j]=:m_ptabPJ2[i] alors :sExtraitPieceJointe(:m_ptabPJ[j])		
+      		fin
+      		// Attachement du fichier au message dans Outlook
+      		:m_pautItem>>Attachments>>Add(:m_sRepTemp+"\"+:m_ptabPJ2[i])	
+      	FIN
+      
+      faire
+      	liberer :m_pautItem
+      	erreur(ExceptionInfo(errRESUME))
+      	RepriseSaisie()
+      fin
+      
+     type : 458752
+   -
+     name : AjoutePieceJointe
+     internal_properties : CAAAAAgAAADuwYkVqSvfFJa5dvO4/iHygINQL5Hs2KT5leERk61LITgubPzRQksOD/XlB9e3+s8I5lRQRXSdMkf3gz7jdH21TJYZzEzP+3+KkLWx5DfjfNiHKHgWxoNNCmv9MY4pkkjqxftzDUxqmai79iIttD58x32l4QlI7CYQ7Ym+iCiyFSV4lhZP3aWNN1CQEtNrSQab6rUCX6QBH553zGSUXsla
+     procedure_id : 4324043521365143529
+     type_code : 12
+     code : |1+
+      // Résumé : Ajoute la pièce jointe demandée au message en cours dans le tableau temporaire.
+      //(Ajout effectif dans Outlook lors des envois)
+      // Syntaxe :
+      // AjoutePieceJointe (<sNomPJ>)
+      //
+      // Paramètres :
+      // 	sNomPJ : Chemin de la pièce jointe à ajouter
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure AjoutePieceJointe(sNomPJ)
+      
+      // Nom du fichier sans le chemin
+      sNom est une chaine = Fextraitchemin(sNomPJ,ffichier+fextension)
+      
+      // Copie dans le répertoire des pièces jointes
+      fcopiefichier(sNomPJ,:m_sRepTemp+"\"+sNom)
+      
+      // Elément déjà présent ?
+      i est un entier
+      pour i=1 _à_ dimension(:m_ptabPJ2)
+      	si :m_ptabPJ2[i]~=sNom alors retour
+      FIN
+      // MAJ du tableau initial
+      dimension(:m_ptabPJ2,dimension(:m_ptabPJ2)+1)
+      :m_ptabPJ2[dimension(:m_ptabPJ2)]=sNom
+      :m_nNbPJ2=dimension(:m_ptabPJ2)
+      
+     type : 458752
+   -
+     name : Envoie
+     internal_properties : CAAAAAgAAADH5eW+noqz1SbCSPL+EwT1VUZ/AYFwpHQxz8eBRDLwgPwHRaeGDzjfa9TFalyYfOVgJrDB6WYqgfacNMA5DzATcsulCMv1FSk1/cKZgTtGTZCO7UckVg6Fekz42sfURq+ukPbcgVKhnTagL7U+f1i1kRDoml2yp3K0sAr5L5RFPNAhh+L3l1wPQPtyhFEH2nJS1g==
+     procedure_id : 4324043522063626227
+     type_code : 12
+     code : |1+
+      // Résumé :  Envoi d'un Mail
+      // Syntaxe :
+      // Envoie ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure Envoie()
+      
+      
+      quand exception dans
+      
+      	// Crée l'item dans Outlook
+      	:m_pautItem = :m_pautOutlook>>CreateItem(::olMailItem)
+      	
+      	// Affecte les propriétés du message
+      	:AffecteProprietes()
+      	
+      	// Vérification des adresses des destinataires
+      	si pas :m_pautItem>>Recipients>>ResolveAll() alors
+      		// Affichage d'Outlook pour résolution du pb
+      		:m_pautItem>>Display()
+      	sinon
+      		// Envoi
+      		:m_pautItem>>Send()
+      	fin
+      	
+      	liberer :m_pautItem
+      
+      faire
+      	liberer :m_pautItem
+      	erreur(ExceptionInfo(errRESUME), "", <§$0000§>)
+      	retour
+      fin
+     type : 458752
+   -
+     name : RepertoireTemporaire
+     procedure_id : 4324043520677736455
+     type_code : 12
+     code : |1+
+      // Résumé :  Définit le répertoire de travail pour les pièces jointes
+      // Syntaxe :
+      // RepertoireTemporaire (<sRep>)
+      //
+      // Paramètres :
+      // 	sRep : répertoire de travail pour les pièces jointes
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure RepertoireTemporaire(sRep)
+      
+      frepcree(sRep)
+      :m_sRepTemp=sRep
+      
+     type : 458752
+   -
+     name : sExtraitPieceJointe
+     internal_properties : CAAAAAgAAABAU2NvLpXhk1SHoFEeeEecRpg0m0fyfkwjh9cz9eMTw1DuYHBjvF0eEesrARFFookEIrTgK7rzZmHRvbxxRp2/5MahnAahZfOIfq+blr1XQjFoH7mnTeoYa8QkyunmR03TPnJM9pcRzEFEJeP0TWNh7KpYfq6/ByEZ/niP1+nHipLtcTMsFLxAnL2rr6r80drzQgG2W8RZ63coCxJ6eDfE
+     procedure_id : 4324043520684486663
+     type_code : 12
+     code : |1+
+      // Résumé : Extraction d'une pièce jointe du message en cours
+      // Syntaxe :
+      // [ <Résultat> = ] sExtraitPieceJointe (<sNomPJ> [, <sRepTemp>])
+      //
+      // Paramètres :
+      // 	sNomPJ : Nom de la pièce jointe
+      // 	sRepTemp : Répertoire temporaire
+      // Valeur de retour :
+      // 	chaîne : Nom du fichier temporaire généré (chaîne vide si erreur)
+      
+      fonction sExtraitPieceJointe(sNomPJ,sRepTemp="")
+      
+      quand exception dans
+      	si  sRepTemp~="" alors sRepTemp=:m_sRepTemp
+      	
+      	// Repositionnement sur l'objet Outlook correspondant
+      	objItem est un objet ole dynamique = :m_pautNameSpace>>GetItemFromID(:m_sID)
+      	si objItem=null alors
+      		erreur(<§$0001§>)
+      		liberer objItem	
+      		renvoyer ""
+      	fin
+      	
+      	// Recherche de la pièce jointe demandée
+      	i est un entier
+      	s est une chaine
+      	pour i = 1 _à_ objItem>>Attachments>>count
+      		s = objItem>>Attachments(i)>>FileName
+      		si s ~= sNomPJ alors
+      			// Extraction dans le répertoire courant
+      			s=sRepTemp+"\"+objItem>>Attachments(i)>>FileName
+      			objItem>>Attachments(i)>>SaveAsFile(s)
+      			liberer objItem
+      	    	renvoyer s
+      		FIN
+      	FIN
+      	
+      	liberer objItem
+      	renvoyer ""
+      
+      faire
+      	erreur(ExceptionInfo(errRESUME))
+      	RepriseSaisie()
+      fin
+      
+      renvoyer ""
+     type : 458752
+   -
+     name : SupprimePieceJointe
+     internal_properties : CAAAAAgAAAC8WRrMHiAQ2Q3L+2D6+8gzMD0aSasEV7JEt/oE16XpRjkieId3EfdcwQ4188vTuzSZLuxwGshuX4DxPuvr1txbNSeQYXLZccvO7fcXFM2NDCouENEzYyuZqByjlB6AyxjSRLlqaEdeuV6GgJlvwTmeoQx1ynZtUlIIWjlTIFD2xRjV2EAkTnu5EuuhVkywH2n4
+     procedure_id : 4324043520461467665
+     type_code : 12
+     code : |1+
+      // Résumé : Supprime la pièce jointe demandée du message en cours dans le tableau temporaire.
+      // (Suppression effective dans Outlook lors des envois)
+      // Syntaxe :
+      // SupprimePieceJointe (<sNomPJ>)
+      //
+      // Paramètres :
+      // 	sNomPJ : Pièce jointe à supprimer
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure SupprimePieceJointe(sNomPJ)
+      
+      i est un entier
+      
+      // Tableau temporaire de travail
+      m_ptabPJ3 est un tableau dynamique de 0 chaines
+      
+      pour i=1 _à_ dimension(:m_ptabPJ2)
+      	si pas :m_ptabPJ2[i]~=sNomPJ alors
+      		// Ajoute l'élément au tableau
+      		dimension(m_ptabPJ3,dimension(m_ptabPJ3)+1)
+      		m_ptabPJ3[dimension(m_ptabPJ3)]=:m_ptabPJ2[i]
+      	fin
+      FIN
+      // Recrée le tableau initial
+      si pas :m_ptabPJ2=null alors liberer :m_ptabPJ2
+      :m_ptabPJ2 = allouer un tableau de dimension(m_ptabPJ3) chaines
+      pour i=1 _à_ dimension(m_ptabPJ3)
+      	:m_ptabPJ2[i]=m_ptabPJ3[i]
+      FIN
+      :m_nNbPJ2=dimension(:m_ptabPJ2)
+      
+     type : 458752
+   -
+     name : InitialisePJ
+     procedure_id : 4324842895519851648
+     type_code : 12
+     code : |1+
+      // Résumé : Procédure appelée avant de saisir un nouveau message pour réinitialiser la gestion des pièces jointes
+      // Syntaxe :
+      // InitialisePJ ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      Procédure InitialisePJ()
+      
+      // RAZ des tableaux pour gérer les pièces jointes
+      
+      si pas :m_ptabPJ=null alors liberer :m_ptabPJ
+      :m_ptabPJ = allouer un tableau de :m_nNbPJ chaines
+      si pas :m_ptabPJ2=null alors liberer :m_ptabPJ2
+      :m_ptabPJ2 = allouer un tableau de :m_nNbPJ2 chaines
+      dimension(:m_ptabPJ,0) ; :m_nNbPJ=0
+      dimension(:m_ptabPJ2,0) ; :m_nNbPJ2=0
+     type : 458752
+   -
+     name : AffecteEmails
+     internal_properties : CAAAAAgAAAAs6YpcNvBsyZXLE+gqE+jbwAVisStsN9r0f7oUDyXhRiEiyAcfQY+8aZ6964v72yz51tRImgAed3D5DluDtjQLzfeQASq5WVtCCWuLkPnBCGYiDNU3By+VrCh3aDocb3ReqCX+HKsiFfLiVH0brf2qnQBh3roRNq5cVj1XPDw6wUT59KTY4h/FdqdJ3rwgr/lo
+     procedure_id : 4331878632033260488
+     type_code : 12
+     code : |1-
+      // Résumé : Récupération des adresses emails des destinataires pour réponse
+      // Syntaxe :
+      // AffecteEmails ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure Affecteemails()
+      
+      quand exception dans
+      	// Expéditeur (e-Mails) pour réponse
+      	objReply est un objet ole dynamique = :m_pautItem>>Reply
+      	si pas objReply=null alors
+      		:m_sExpediteur = objReply>>Recipients(1)>>Address
+      		liberer objReply
+      	FIN
+      	
+      	// Destinataires (e-Mails) pour réponse à tous
+      	objReplyAll est un objet ole dynamique = :m_pautItem>>ReplyAll
+      	sDestCourant, sNomDest, sEmailDest sont des chaines
+      	sDestCourant = remplace(:m_pautItem>>to,"'","")
+      	k est un entier
+      	pour k=1 _à_ objReplyAll>>Recipients>>Count
+      		sEmailDest=objReplyAll>>Recipients(k)>>Address
+      		sNomDest=objReplyAll>>Recipients(k)>>Name
+      		si pas sNomDest~=:m_sUtilisateur alors	// Ignore l'utilisateur en cours
+      			si pas sEmailDest~=sDestCourant alors	// Ignore l'eMail de l'utilisateur en cours
+      				si pas sEmailDest~=:m_sExpediteur alors		// Ignore l'expéditeur
+      					si pas :m_sDest~="" alors :m_sDest+="; "
+      						:m_sDest+=sEmailDest
+      					fin
+      			fin
+      		fin
+      	fin
+      	liberer objReplyAll
+      	
+      	// Copie / Copie cachée
+      	:m_sDestCopie = :m_pautItem>>cc
+      	:m_sDestCopieC = :m_pautItem>>bcc
+      
+      faire
+      	retour
+      fin
+     type : 458752
+   -
+     name : AffecteDateHeure
+     procedure_id : 4331881780865122671
+     type_code : 12
+     code : |1+
+      Procédure AffecteDateHeure()
+      
+      quand exception dans
+      	// Date de réception
+      	sDateHeure est un dateheure
+      	sDateHeure = :m_pautItem>>ReceivedTime
+      	:m_sDateReception = sDateHeure..date
+      	si pas datevalide(:m_sDateReception) alors :m_sDateReception=""
+      	// Heure de réception
+      	:m_sHeureReception = NumériqueVersChaine(sDateHeure..heure,"02d")+NumériqueVersChaine(sDateHeure..minute,"02d")
+      faire
+      	retour
+      FIN
+     type : 458752
+   -
+     name : RemplitEmail
+     internal_properties : CAAAAAgAAACENyeBUsxq/20mePae5lCIuaAsvI19d5hioRbdCB3nN8wnsrhOOFrc9NGt5clJKckyvO0MOCyZFVYMrRRvdC/D4eEZsttiQFg8zbtEztZcVGPj3YaIFuTu8/OKbxE3qnX3wb5B3zixKOUpI17UZGwn1Bv0QU3G1VENleQmYx5yfoRQvZCVTb4AYII71k2wnG4PQtw4EVDJ54uzjD7cWUXBcA==
+     procedure_id : 1886562799929629172
+     type_code : 12
+     code : |1-
+      // Résumé : Récupération des propriétés du mail lu préalablement
+      // Syntaxe :
+      //RemplitEmail (<clListe>)
+      //
+      // Paramètres :
+      // 	clListe : Liste à laquelle l'élément appartient
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE RemplitEmail(clListe)
+      
+      // Identifiant automatique géré par Outlook
+      :m_sID = :m_pautItem>>EntryID
+      // Sujet
+      :m_sSujet = :m_pautItem>>Subject
+      // Contenu
+      :m_sContenu = :m_pautItem>>Body
+      // Récupération de la date et de l'heure
+      :AffecteDateHeure()
+      // Récupération des adresses emails des destinataires pour réponse
+      :Affecteemails()
+      // Pièces jointes
+      :m_nNbPJ = :m_pautItem>>Attachments>>count
+      n est un entier =  :m_nNbPJ 
+      :m_ptabPJ = allouer un tableau de n chaines
+      j est un entier
+      pour j=1 _à_ :m_nNbPJ
+      	:m_ptabPJ[j] = :m_pautItem>>Attachments(j)>>FileName
+      FIN
+      
+      :m_clListe = clListe
+     type : 458752
+   -
+     name : LibereTabDyn
+     procedure_id : 1886566248788515609
+     type_code : 12
+     code : |1+
+      Procédure VIRTUELLE LibereTabDyn()
+      
+      // Pièces jointes de tous les messages
+      
+      SI PAS :m_ptabPJ=Null ALORS
+      	libérer :m_ptabPJ
+      FIN
+      // Pièces jointes du message courant
+      SI PAS :m_ptabPJ=Null ALORS libérer :m_ptabPJ
+      SI PAS :m_ptabPJ2=Null ALORS libérer :m_ptabPJ2
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x3c1def8e2c2cdf7a
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      fr-FR : Vérifiez les adresses e-Mails des destinataires.
+      en-GB : Vérifiez les adresses e-Mails des destinataires.
+     index : 0
+   -
+     text :
+      fr-FR : Ce message n'existe plus dans Outlook.
+      en-GB : Ce message n'existe plus dans Outlook.
+     index : 1
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

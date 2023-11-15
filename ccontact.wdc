@@ -1,0 +1,206 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cContact
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x3c0216a952a7638c
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAAB3QRadKQo0IivASy6AC/iJ5zGkcMgRYx+rlpcs9NE3D5XgxlRzvAGhnP/PUHxKXS47jsJ8IFg8jhxTApdOEuB6Iyu+zasGCmpChPw2RMSKEDEDYmUo/agpLpbf9v3rWUpL72k7mEMiNjiaSxA=
+     code : |1+
+      // Classe de pilotage du dossier "Contacts" d'Outlook
+      cContact est une Classe
+      		hérite de cEntité					// Hérite de la classe générique de pilotage d'Outlook
+      	
+      	m_sID est une chaine				//Identifiant du contact
+      	m_sCategorie est une chaine			// Catégorie
+      	m_sNom est une chaine				// Nom
+      	m_sPrenom est une chaine			// Prénom
+      	m_sNomComplet est une chaine		// Prénom + Nom
+      	m_sSurnom est une chaine			// Surnom
+      	m_sFonction est une chaine			// Fonction de la personne dans la société
+      	m_sSociete est une chaine			// Société
+      	m_sService est une chaine			// Service
+      	m_sBureau est une chaine			// Bureau
+      	m_sADProfRue est une chaine			// Rue (adresse professionnelle)
+      	m_sADProfCP est une chaine			// Code postal (adresse professionnelle)
+      	m_sADProfVille est une chaine		// Ville (adresse professionnelle)
+      	m_sADProfEtat est une chaine		// Etat/Région/Département (adresse professionnelle)
+      	m_sADProfPays est une chaine		// Pays (adresse professionnelle)
+      	m_sCommentaire est une chaine		// Commentaire
+      	m_sTelBureau1 est une chaine		// N° tél. bureau (1)
+      	m_sTelBureau2 est une chaine		// N° tél. bureau (2)
+      	m_sFaxBureau est une chaine			// N° fax bureau
+      	m_sTelPortable est une chaine		// N° tél. portable
+      	m_sTelPerso1 est une chaine			// N° tél. perso (1)
+      	m_sTelPerso2 est une chaine			// N° tél. perso (2)
+      	m_sEmail est une chaine				// Adresse email
+      	m_sTypeEmail est une chaine			// Type (SMTP généralement)
+      	m_sSiteWeb est une chaine			// URL du site Web
+      	
+      Fin
+      
+      
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAADD5xXwfNmdH7pA7IYEKVxFiRRPuW9W5q4tzcPZrtzshLRpnc/0JYIpv/IBdhomLNWMBLRd54xkB4pCYFRX/WQXak2BBKEz/x/Rok0W1PiBertXAKTPI/HCQaFj90ohcWS1XQXNoGuoRoFxdnbtkEMKCN1fE9T7Lsd79c0+GrmcDR/21gPe4JO400QRwTfzAFxW0g==
+     procedure_id : 4324043508761256844
+     type_code : 27
+     code : |1+
+      PROCEDURE Constructeur(MonItem = null, clListe = null)
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cEntité(::CST_CONTACTS, MonItem)
+      
+      //Ceci définit à quelle liste appartient l'élément
+      //En cas de modification ou suppression de cet élément, on saura quelle liste mettre à jour ..
+      si clListe <> null alors :m_clListe = clListe
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 4324043507914138508
+     type_code : 28
+     type : 655360
+   -
+     name : AffecteProprietes
+     internal_properties : CAAAAAgAAACmoVLMGyKV6CMuc9aS58Svq5gJdSxVLBaBm78jPbc2l8/ovPmdRYcPbjrLUcUCd2RneAcnu5lpYGP8/qkDnMcvxA92o1YK53zZta4cOYwdsSrh4DnBCXnHW0k7auD74kUexddL+zXMVZZ/lw==
+     procedure_id : 4324043521483894641
+     type_code : 12
+     code : |1-
+      // Résumé : Affectation des propriétés Outlook d'après les valeurs saisies côté WINDEV
+      // Syntaxe :
+      // AffecteProprietes ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteProprietes()
+       
+      
+      quand exception dans
+      	// Catégorie
+      	:m_pautItem>>Categories = :m_sCategorie
+      	// Nom
+      	:m_pautItem>>LastName = :m_sNom
+      	// Prénom
+      	:m_pautItem>>FirstName = :m_sPrenom
+      	// Prénom + Nom
+      	:m_pautItem>>FileAs = :m_sNomComplet
+      	// Surnom
+      	:m_pautItem>>NickName = :m_sSurnom
+      	// Fonction de la personne dans la société
+      	:m_pautItem>>JobTitle = :m_sFonction
+      	// Société
+      	:m_pautItem>>CompanyName = :m_sSociete
+      	// Service
+      	:m_pautItem>>Department = :m_sService
+      	// Bureau
+      	:m_pautItem>>OfficeLocation = :m_sBureau
+      	// Adresse professionnelle
+      	:m_pautItem>>BusinessAddressStreet = :m_sADProfRue
+      	:m_pautItem>>BusinessAddressPostalCode = :m_sADProfCP
+      	:m_pautItem>>BusinessAddressCity = :m_sADProfVille
+      	:m_pautItem>>BusinessAddressState = :m_sADProfEtat
+      	:m_pautItem>>BusinessAddressCountry = :m_sADProfPays
+      	// Commentaire
+      	:m_pautItem>>Body = :m_sCommentaire
+      	// Tél/fax
+      	:m_pautItem>>BusinessTelephoneNumber = :m_sTelBureau1
+      	:m_pautItem>>Business2TelephoneNumber = :m_sTelBureau2
+      	:m_pautItem>>BusinessFaxNumber = :m_sFaxBureau
+      	:m_pautItem>>MobileTelephoneNumber = :m_sTelPortable
+      	:m_pautItem>>HomeTelephoneNumber = :m_sTelPerso1
+      	:m_pautItem>>Home2TelephoneNumber = :m_sTelPerso2
+      	// Web
+      	:m_pautItem>>Email1Address = :m_sEmail
+      	:m_pautItem>>Email1AddressType = :m_sTypeEmail
+      	:m_pautItem>>WebPage = :m_sSiteWeb
+      faire
+      	liberer :m_pautItem
+      	erreur(ExceptionInfo(errRESUME))
+      	RepriseSaisie()
+      fin
+     type : 458752
+   -
+     name : RemplitContact
+     internal_properties : CAAAAAgAAAApT99BYqM3TYZaqIqG+8RttabvgQEorKSJb78h1PIoAASvrb8Oj6inm+xVgqSQ3M3QVlAROW6SUc6MrPApn7gjykM9kKM19ZEl4S59TU+icYyCeTswuopJVoC0rjNYshMaFJKwvRb9cdIkW4kqY/T5rTTEPrkm43agxAbNS0iBcOzFY4ZDO6iTfL9edFAayFy8uA==
+     procedure_id : 4324043520777940869
+     type_code : 12
+     code : |1-
+      // Résumé : Récupération des propriétés du contact lu préalablement
+      // Syntaxe :
+      // RemplitContact (<clListe>)
+      //
+      // Paramètres :
+      // 	clListe : Liste à laquelle l'élément appartient
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE RemplitContact(clListe)
+      
+      
+      // Identifiant automatique géré par Outlook
+      :m_sID = :m_pautItem>>EntryID
+      // Catégorie
+      :m_sCategorie = :m_pautItem>>Categories
+      // Nom
+      :m_sNom = :m_pautItem>>LastName
+      // Prénom
+      :m_sPrenom = :m_pautItem>>FirstName
+      // Prénom + Nom
+      :m_sNomComplet = :m_pautItem>>FileAs
+      // Surnom
+      :m_sSurnom = :m_pautItem>>NickName
+      // Fonction de la personne dans la société
+      :m_sFonction = :m_pautItem>>JobTitle
+      // Société
+      :m_sSociete = :m_pautItem>>CompanyName
+      // Service
+      :m_sService = :m_pautItem>>Department
+      // Bureau
+      :m_sBureau = :m_pautItem>>OfficeLocation
+      // Adresse professionnelle
+      :m_sADProfRue = :m_pautItem>>BusinessAddressStreet
+      :m_sADProfCP = :m_pautItem>>BusinessAddressPostalCode
+      :m_sADProfVille = :m_pautItem>>BusinessAddressCity
+      :m_sADProfEtat = :m_pautItem>>BusinessAddressState
+      :m_sADProfPays = :m_pautItem>>BusinessAddressCountry
+      // Commentaire
+      :m_sCommentaire = :m_pautItem>>Body
+      // Tél/fax
+      :m_sTelBureau1 = :m_pautItem>>BusinessTelephoneNumber
+      :m_sTelBureau2 = :m_pautItem>>Business2TelephoneNumber
+      :m_sFaxBureau = :m_pautItem>>BusinessFaxNumber
+      :m_sTelPortable = :m_pautItem>>MobileTelephoneNumber
+      :m_sTelPerso1 = :m_pautItem>>HomeTelephoneNumber
+      :m_sTelPerso2 = :m_pautItem>>Home2TelephoneNumber
+      // Web
+      :m_sEMail = :m_pautItem>>Email1Address
+      :m_sTypeEMail = :m_pautItem>>Email1AddressType
+      :m_sSiteWeb = :m_pautItem>>WebPage
+      
+      :m_clListe = clListe
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d13735331
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

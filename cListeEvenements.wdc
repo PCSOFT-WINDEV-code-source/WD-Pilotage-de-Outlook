@@ -1,0 +1,86 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cListeEvènements
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2e8d620a4867d0
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cListeEvènements est une classe
+      	herite de cListeEntités
+      	
+      Fin
+      
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAACCKzZ8gLh5mn3OYSp4lO+Ud2KoQqkCdOIx/GdOo8nyaP489I4xVPvF1F0UwW7Jl6GPOAQKTNKNlAZvdB7yrKaS3RRp6QL0moqTUBrVfWJDCZwOAYQTK+Zh3CuRRq3PweiQ+7F8wmYu/SIvD2cQh8w51M7hpVwAz9D6ce0YE62zdaZeOxQW4ghRg6bdA7+115DRw7TYrP2ozAxNtWr7J03pW54P+A==
+     procedure_id : 1886600746133710800
+     type_code : 27
+     code : |1-
+      Procédure Constructeur()
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cListeEntités(::CST_CALENDRIER)
+      
+      //Liste des événements de Outlook
+      :m_ptabItems = allouer un tableau de 0 CEvènement
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1886600746133776336
+     type_code : 28
+     code : |1+
+      Procédure Destructeur()
+      
+     type : 655360
+   -
+     name : AffecteTableauItem
+     internal_properties : CAAAAAgAAADljp0nwJxJJtGIo4j6Op1WL3fAEkdOrNHtmhR94AQtZhhExaAQXKhxIth1oyZbrW8BVtS3r9PGwYfjh0gtEluMHFCvm/rnEgmQ4ewgFxd0esqb6SO7PAwrtkyglpY8wyl6pSQReA6xGh6CJA53vRGlY8Fs8wAGn3naULfelmNaAUBDIlODUBnpyEIz1Wr3YPsVQgn/zdmucNXdqOzFROmV8WWk1IPpzcGmWFouR9WpxBO7yDqVxNkYCQ55et4=
+     procedure_id : 1886600883572827340
+     type_code : 12
+     code : |1+
+      // Résumé : Stocke en mémoire dans un tableau la liste des événements de Outlook 
+      // Syntaxe :
+      // AffecteTableauItem (<i>)
+      //
+      // Paramètres :
+      // 	i : Indice dans le tableau de l'évènement à ajouter
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteTableauItem(i)
+      
+      //Création d'une nouvelle instance Evènement
+      clEvènementEnCours  est un CEvènement(:m_pautItem) 
+      
+      //Affectation de ses membres avec ce qui vient d'être lu dans Outlook
+      clEvènementEnCours.RemplitEvènement(objet)
+      
+      //Ajout de l'évènement dans le tableau à l'indice spécifié
+      :m_ptabItems[i] = clEvènementEnCours
+      
+      
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d134c519b
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

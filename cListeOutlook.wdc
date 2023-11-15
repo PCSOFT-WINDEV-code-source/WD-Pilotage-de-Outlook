@@ -1,0 +1,238 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cListeEntités
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2fada904787b57
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAACYsXzIb0KoQ3e4RzgJJjwrwHbhnRdOAxq6krjNKXowxapQV4ImugvBf4HpHzZYbsOJukDLwHt4bvgl90sfXiDDzrwUdYUde9t6EknrMAFGLZNXvYb1Ad1S2AqhKjwdPgHZ0qbC5SFT+Ng4ydLeHh5zoLdYGUgHv9/iKOvHjLwnmcbBHud0nBdMp8DoQ5q6D03c
+     code : |1+
+      cListeEntités est une classe
+      	hérite de cOutlook
+      	
+      	m_pautFolder est un objet ole dynamique		// Objet Folder, dossier Outlook
+      	m_ptabItems est un tableau dynamique 		// Tableau permettant de stocker les éléments lus dans Outlook
+      	m_nNumItemCourant est un entier				// N° de l'item en cours
+      	m_bEnDehors est un booleen					// Vrai si plus d'item à lire
+      
+      	
+      	CONSTANT
+      		// Dossiers Outlook
+      		olFolderInbox=6			// Boîte de réception
+      		olFolderCalendar=9		// Calendrier
+      		olFolderContacts=10     // Contacts
+      		olFolderTasks=13		// Tâches
+      		olFolderNotes=12 		// Notes
+      	
+      	
+      		CST_REPONDRE = "REPONDRE"
+      		CST_REPONDRE_A_TOUS = "REPONDREATOUS"
+      		CST_FAIRE_SUIVRE = "FAIRESUIVRE"
+      	FIN
+      	
+      Fin
+      
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAADS+2bDEEgtxttszXSGRiFewaAubpGqOObLxlN0macQnoDKzgZtkHtBltcY/9BfCWuFskJuvKItIDydvKig8jQYM17bOZZYWjrFsjJ/M1g5/zaktn3SdCNUIx4Oz8ic8KktELJRncOPXF0+FHiDLMfW9deyEuc9AIMpJKaF+pZe8j83LPFJBylw8lku8OYmaiVKdKkxez7tU8dIMus21Jzaq25fKA==
+     procedure_id : 1886917710327675735
+     type_code : 27
+     code : |1-
+      Procédure Constructeur(sDossier)
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cOutlook(sDossier)
+      
+      // Se positionne sur le dossier Outlook demandé
+      nIDDossier est un entier
+      SELON Majuscule(SansEspace(Remplace(Remplace(Remplace(sDossier,"â","a"),"î","i"),"é","e")))
+      	CAS ::CST_BOITE_DE_RECEPTION, ::CST_MAIL :
+      		nIDDossier=::olFolderInbox
+      		:m_nTypeItem=::olMailItem
+      		
+      	CAS ::CST_CALENDRIER : 
+      		nIDDossier=::olFolderCalendar
+      		:m_nTypeItem=::olAppointmentItem
+      		
+      	CAS ::CST_CONTACTS : 
+      		nIDDossier=::olFolderContacts
+      		:m_nTypeItem=::olContactItem
+      		
+      	CAS ::CST_TACHES : 
+      		nIDDossier=::olFolderTasks
+      		:m_nTypeItem=::olTaskItem
+      		
+      	CAS ::CST_NOTES : 
+      		nIDDossier=::olFolderNotes
+      		:m_nTypeItem=::olNoteItem
+      		
+      	AUTRES CAS
+      		Erreur(ChaîneConstruit(<§$0000§>,sDossier))
+      		RETOUR
+      FIN
+      
+      :m_pautFolder = :m_pautNameSpace>>GetDefaultFolder(nIDDossier)
+     type : 589824
+   -
+     name : Destructeur
+     internal_properties : CAAAAAgAAABmCQs4vAj1MjfgcTg6mtUiZbwpx4HUfJZr5hM0XefE6hhSEh7lALcBlicgtzT3/a+NSi6WdGp5sNR1XChcCihs+653Qe7IFtJtwlpPv5CFczY0oF8w1o3+WZCoUZb2qoeLxowTE6VRnjMAPhLx3pEcoy0c3BVfMq23vrhXUGAIGM1VNtNXMWsysJPICqQQEuVLeOW1J8pxF9uchl/iXOgWaNjrnA==
+     procedure_id : 1886917710327741271
+     type_code : 28
+     code : |1-
+      Procédure Destructeur()
+      
+      // Libération de la mémoire prise par les éléments lus dans Outlook
+      SI PAS :m_ptabItems=Null ALORS libérer :m_ptabItems
+      
+      // Fin du dialogue avec Outlook
+      SI PAS :m_pautItem=Null ALORS libérer :m_pautItem
+      SI PAS :m_pautFolder=Null ALORS libérer :m_pautFolder
+     type : 655360
+   -
+     name : AffecteTableauItem
+     procedure_id : 1886917710327806807
+     type_code : 12
+     code : |1+
+      Procédure virtuelle AffecteTableauItem(i <utile>)
+      
+      // Cette méthode est redéfinie selon le type de donnée lue :
+      // Note, Mail, Calendrier, ...
+      
+     type : 458752
+   -
+     name : ChargeItems
+     internal_properties : CAAAAAgAAABqicFT6dKoWRJ9LthtSCdUCdp6N5dsp9pqa4yvjIgGJiDnl77iVibC+rAm5ga1fzyr5uHCFgHpgDPkOuVOpUClIGPKnswN/cxIrR+ufI+Kb1A49o6y8ezWEpLFtJIjY6sYOMEhFe9D/DjuDDkLBBWTVV4rlz3L11fw1pEZojSjMrdbXGRTIqKsgz9sRdeF48D8hnLJ5GrHowieS70hW5E=
+     procedure_id : 1886917710327872343
+     type_code : 12
+     code : |1+
+      // Résumé : Charge les données Outlook dans un tableau dynamique
+      // Syntaxe :
+      // ChargeItems ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure ChargeItems()
+      
+      QUAND EXCEPTION dans
+      	// Cas des emails pour lesquels on alloue des tableaux dynamiques
+      	// pour stocker les pièces jointes (méthode non-définie dans les autres cas)
+      	:LibereTabDyn()
+      	
+      	Dimension(:m_ptabItems, :m_pautFolder>>items>>count)
+      	
+      	// Parcours des items et appel de la méthode d'affectation
+      	// (propre au type d'élément lu)
+      	i est un entier
+      	pour i=1 _à_ :m_pautFolder>>items>>count
+      		:m_pautItem = :m_pautFolder>>Items>>Item(i)
+      		:AffecteTableauItem(i)
+      	FIN
+      	si pas :m_pautItem=null alors liberer :m_pautItem
+      	
+      	// Initialisation des variables de parcours
+      	:m_nNumItemCourant=0
+      	:m_bEnDehors=vrai
+      	
+      faire
+      	Erreur(ExceptionInfo(errRésumé))
+      	RepriseSaisie()
+      FIN
+      
+     type : 458752
+   -
+     name : LibereTabDyn
+     internal_properties : CAAAAAgAAADVy/s7bh/jHQbuyCKSN+j51dLXkXXEyKQRG3dZMM48rDQ7TZeSIwynq/CtklgU0CFYGvhxTQK2Ub5QZEA9o4RHUtfl6N/JUUE9sxQXq+EY63LE982uBECLlEqiuDki8I1A/kgaW/CTU/AOqTMQjUJTA4ZSkG+oEeC+jnRf2aqnomqvuaAxFQ51koH07m58bIBAxA==
+     procedure_id : 1886917710327937879
+     type_code : 12
+     code : |1+
+      Procédure virtuelle LibereTabDyn()
+      
+      // Cas des emails pour lesquels on alloue des tableaux dynamiques
+      // pour stocker les pièces jointes (méthode non-définie dans les autres cas)
+      
+      
+     type : 458752
+   -
+     name : RenvoieItemCourant
+     procedure_id : 1886917710328003415
+     type_code : 12
+     code : |1+
+      // Résumé : Renvoie l'élément (mail, contact, tâche.. ) situé à l'indice en cours
+      // Syntaxe :
+      //[ <Résultat> = ] RenvoieItemCourant ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Type indéterminé : 
+      
+      Procédure RenvoieItemCourant()
+      
+      renvoyer :m_ptabItems[:m_nNumItemCourant]
+     type : 458752
+   -
+     name : LitRecherche
+     internal_properties : CAAAAAgAAABouuwGQ5wDvsRrGIKm0EpfjgA/dIXDhWLvEErBTWGU2CYNi5qcN4MRfZ27OrMaiFrn9FqlYdZF1fgIZ4j3rBw+/QGP3bJ7DK8bbn01XfBAQqLKqbuYtz2J+OlmyyiTkIp5hY3Bi3RhzWZ9ulZnpV0N53jVkkXW2Kr0fd6DgPk+mjCBkFqUh4a06gvTYytIuXVVGdj1TQ==
+     procedure_id : 1886917710328068951
+     type_code : 12
+     code : |1-
+      // Résumé :  Positionnement sur un item d'après son ID
+      // Syntaxe :
+      //[ <Résultat> = ] LitRecherche (<sID>)
+      //
+      // Paramètres :
+      // 	sID : <indiquez ici le rôle de sID>
+      // Valeur de retour :
+      // 	booléen : 
+      
+      FONCTION LitRecherche(sID)
+      
+      // Chargement des données depuis Outlook
+      SI Dimension(:m_ptabItems)=0 ALORS :ChargeItems()
+      
+      // Recherche de l'élément 
+      nElémentTrouvé est un entier
+      
+      nElémentTrouvé = TableauCherche(:m_ptabItems, tcLinéaire, "m_sID", sID)
+      
+      SI nElémentTrouvé = -1 ALORS
+      	// Aucun élément à lire
+      	:m_bEnDehors=Vrai
+      	:m_nnumItemCourant=0
+      SINON
+      	:m_bEnDehors=Faux
+      	:m_nNumItemCourant=nElémentTrouvé
+      FIN
+      
+      RENVOYER (nElémentTrouvé>0)
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1a2e7ffe05b61a4c
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      fr-FR : Dossier <%1> inconnu
+     index : 0
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

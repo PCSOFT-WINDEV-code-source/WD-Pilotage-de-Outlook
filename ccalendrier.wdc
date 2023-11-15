@@ -1,0 +1,160 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cEvènement
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2e995c0c993137
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAACRY3S/O5X6FpFqh8hkb55fOct+DPZ3NxOxmJN+yAWJgbtuYMC9Wh2hMol/9tTqs5yJPMi0pmrNcYm4I1QpN8NfNj5PsiKPj4FTTf3LN/Hl7dxm3+abQgHw44MQ6+iAwCs65rpAf0rMVBq8bTY=
+     code : |1-
+      // Classe de pilotage du dossier "Calendrier" d'Outlook
+      cEvènement est une Classe
+      		hérite de cEntité					// Hérite de la classe générique de pilotage d'Outlook
+      	
+      	
+      	m_sID est une chaine				//Identifiant de l'évènement
+      	m_sCategorie est une chaine			// Catégorie
+      	m_sSujet est une chaine				// Sujet
+      	m_sContenu est une chaine			// Contenu
+      	m_sDateDebut est une chaine   		// Date de début
+      	m_sHeureDebut est une chaine   		// Heure de début
+      	m_sDateFin est une chaine   		// Date de fin
+      	m_sHeureFin est une chaine   		// Heure de fin
+      	m_bAlarme est un booleen			// Vrai si alarme demandée
+      	m_nAlarmeNbMinutes est un entier	// Alerte n minutes avant
+      Fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAADlpyJ3GM97hvoyurHZ0+3wl1PqRdRkfQIPB6NfWY9CtGsoktf3Ut/sE+NQ0BZgEE294QSE5eyW5D7gTWVwqSRuZsUTZYA28CLcFlMXCo2sxnGLMvJ5MXOQyzMn62oBkTTleXNvDA+UkqVXFo5bAtfetMN7d3CvGh8DeU2+irqJIc52ruLsukMghFDYlmhIdw+i5lb/Jz3+KO76m8jN1W9MkFQ=
+     procedure_id : 1886613914542289207
+     type_code : 27
+     code : |1+
+      Procédure Constructeur(MonItem = null, clListe = null)
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cEntité(::CST_CALENDRIER, MonItem)
+      
+      
+      //Ceci définit à quelle liste appartient l'élément
+      //En cas de modif ou suppression de cet élément, on saura quelle liste mettre à jour ..
+      si clListe <> null alors :m_clListe = clListe
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1886613914542354743
+     type_code : 28
+     type : 655360
+   -
+     name : AffecteProprietes
+     internal_properties : CAAAAAgAAACmoVLMGyKV6CMuc9aS58Svq5gJdSxVLBaBm78jPbc2l8/ovPmdRYcPbjrLUcUCd2RneAcnu5lpYGP8/qkDnMcvxA92o1YK53zZta4cOYwdsSrh4DnBCXnHW0k7auD74kUexddL+zXMVZZ/lw==
+     procedure_id : 1886613914542420279
+     type_code : 12
+     code : |1+
+      // Résumé : Affectation des propriétés Outlook d'après les valeurs saisies côté WINDEV
+      // Syntaxe :
+      // AffecteProprietes ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteProprietes()
+      
+      quand exception dans
+      	// Catégorie
+      	:m_pautItem>>Categories = :m_sCategorie
+      	// Sujet
+      	:m_pautItem>>Subject = :m_sSujet
+      	// Contenu
+      	:m_pautItem>>Body = :m_sContenu
+      	// Date de début
+      	si datevalide(:m_sDateDebut) alors :m_pautItem>>Start = dateversentier(:m_sDateDebut)-dateversentier("19000101")+2  + ((val(:m_sHeureDebut[[1 à 2]])/24) + (val(:m_sHeureDebut[[3 à 4]])/24/60))
+      	// Date de fin (échéance)
+      	si datevalide(:m_sDateFin) alors :m_pautItem>>End = dateversentier(:m_sDateFin)-dateversentier("19000101")+2  + ((val(:m_sHeureFin[[1 à 2]])/24) + (val(:m_sHeureFin[[3 à 4]])/24/60))
+      	// Alarme
+      	si :m_bAlarme alors
+      		:m_pautItem>>ReminderSet=vrai
+      		// Heure alarme
+      		:m_pautItem>>ReminderMinutesBeforeStart = :m_nAlarmeNbMinutes
+      	sinon
+      		:m_pautItem>>ReminderSet=faux
+      		// Heure alarme
+      		:m_pautItem>>ReminderMinutesBeforeStart = 0
+      	fin
+      
+      faire
+      	liberer :m_pautItem
+      	erreur(ExceptionInfo(errRESUME))
+      	repriseSaisie()
+      fin
+     type : 458752
+   -
+     name : RemplitEvènement
+     internal_properties : CAAAAAgAAAAYxXtMisDDAmsPijYKWTFb2X22F7Av4XYLsf8hrg37rO/qdbhawP+BPItq3GB6D/Ft1EcnITjQNwnDiQJLtBn0qbY627qk6oDzpOv/Bf+x/okammFb3DwbiNwMNztAERNMKXQVQLXMJzqWvlTU7JBSZm4U/Lyx2d72lOobybJLOsR63lOOtYzpGcXaDpkPWxlCCVFfdEtsTDHa2Mepam5yh9db
+     procedure_id : 1886613914542485815
+     type_code : 12
+     code : |1-
+      // Résumé : Récupération des propriétés de l'évènement lu préalablement
+      // Syntaxe :
+      //RemplitEvènement (<clListe>)
+      //
+      // Paramètres :
+      // 	clListe : Liste à laquelle l'élément appartient
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure RemplitEvènement(clListe)
+      
+      sDateHeure est un DateHeure
+      
+      // Identifiant automatique géré par Outlook
+      :m_sID = :m_pautItem>>EntryID
+      // Catégorie
+      :m_sCategorie = :m_pautItem>>Categories
+      // Sujet
+      :m_sSujet = :m_pautItem>>Subject
+      // Contenu
+      :m_sContenu = :m_pautItem>>Body
+      // Date de début
+      sDateHeure=:m_pautItem>>Start
+      :m_sDateDebut = sDateHeure..Date
+      SI PAS DateValide(:m_sDateDebut) ALORS :m_sDateDebut=""
+      // Heure début
+      :m_sHeureDebut=NumériqueVersChaîne(sDateHeure..Heure,"02d")+NumériqueVersChaîne(sDateHeure..Minute,"02d")
+      // Date de fin (échéance)
+      sDateHeure=:m_pautItem>>End
+      :m_sDateFin = sDateHeure..Date
+      SI PAS DateValide(:m_sDateFin) ALORS :m_sDateFin=""
+      // Heure fin
+      :m_sHeureFin=NumériqueVersChaîne(sDateHeure..Heure,"02d")+NumériqueVersChaîne(sDateHeure..Minute,"02d")
+      // Alarme
+      :m_bAlarme = :m_pautItem>>ReminderSet
+      // Heure alarme
+      :m_nAlarmeNbMinutes=:m_pautItem>>ReminderMinutesBeforeStart
+      
+      :m_clListe = clListe
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d12df512d
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

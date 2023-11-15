@@ -1,0 +1,84 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cListeContacts
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2e8ed10a56041e
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cListeContacts est une classe
+      	herite de cListeEntités
+      	
+      Fin
+      
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAAB6E470KDClUlUuiQpgrG/0Tyr4ClEKtJLRJDcG0wkKAF6MbF5xJIMNvM2MoVZBxwHnEMTiJFoNRHYnJKZCHP5afbQRGbLEwnI78JKFtcrjKeTG5eC3z4L10CelcokbbRS0j8VIlkr60fZrw4NMc8jl6NL1kSBUK+RuzVH0bzmPQeoCH8BapuTl90LhPytR05xFNzi04JFEMJCJ+dYnz6Vh0xb3gA==
+     procedure_id : 1886602322387600414
+     type_code : 27
+     code : |1+
+      Procédure Constructeur()
+      
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cListeEntités(::CST_CONTACTS)
+      
+      //Liste des contacts de Outlook
+      :m_ptabItems=allouer un tableau de 0 ccontact
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1886602322387665950
+     type_code : 28
+     code : |1+
+      Procédure Destructeur()
+      
+     type : 655360
+   -
+     name : AffecteTableauItem
+     internal_properties : CAAAAAgAAABKk6nCyXD53D3XyNI4fz/Ty9HeN9zBLTRprSk5JIupHF06ZQxCBs87mgfwDGL8OV0vMONP3baQdUfPz8LhUj/s9y6S/14+fvp9TIEHk1Xj4mN5G4IUac/cjVP1zFBZDgi76GUmIZKvmM/xG3X1QcWL6Skp0WnyIJeDB180mk80p5OJr0Qf2ncSmviPd3qUXBYRlP4kMeTDpart1Yggn4AANQUJ
+     procedure_id : 1886602940864017755
+     type_code : 12
+     code : |1-
+      // Résumé : Stocke en mémoire dans un tableau la liste des contacts de Outlook 
+      // Syntaxe :
+      //AffecteTableauItem (<i>)
+      //
+      // Paramètres :
+      // 	i : Indice dans le tableau du contact à ajouter
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure virtuelle AffecteTableauItem(i)
+      
+      //Création d'une nouvelle instance Contact
+      clContactEnCours  est un cContact(:m_pautItem) 
+      
+      //Affectation de ses membres avec ce qui vient d'être lu dans Outlook
+      clContactEnCours.RemplitContact(objet)
+      
+      //Ajout du contact dans le tableau à l'indice spécifié
+      :m_ptabItems[i] = clContactEnCours
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d12ea513d
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

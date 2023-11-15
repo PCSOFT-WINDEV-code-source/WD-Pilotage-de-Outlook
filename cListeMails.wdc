@@ -1,0 +1,97 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cListeMails
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2e674b0bd69f51
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1-
+      cListemails est une classe
+      	herite de cListeEntités
+      
+      Fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAADC63Y8kFgZ+n0OAQr41M/UV0JIosmi1IJxPMeuY8mSqN4c1C5RtNvlFB104S7Jt+FvmKTq7PLttMYvFH4ybIYSPfRJieKUOmqTEHq1/eLjSbwu0ZSj25bRLBuhVl3/cTjAy4EM0hbeLfKf37fAtzxJxN6xtWywf0BKIT0oA52jRRbuS+RmUngB05ZtU+9lRyDB0wRoPO2Y/Ny9Bfprlz2pm15POA==
+     procedure_id : 1886558865933705041
+     type_code : 27
+     code : |1-
+      Procédure Constructeur()
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cListeEntités(::CST_BOITE_DE_RECEPTION)
+      
+      //Liste des mails de Outlook
+      :m_ptabItems=allouer un tableau de 0 cmail
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1886558865933770577
+     type_code : 28
+     code : |1-
+      Procédure Destructeur()
+      
+      // Libération des tableaux dynamiques
+      //:LibereTabDyn()
+     type : 655360
+   -
+     name : AffecteTableauItem
+     internal_properties : CAAAAAgAAAAg561Y2dTZZBQPnvk2h6oVtoAuldf5Jj+cHewmEDBBw9fvS1CVAaY2UD13MNC7kTAzJxzLqX+K2Uf/ge6LspFyCOGi0LOqgT685OLZDOBPZloLmGbRFnosnTkYjXfZUF+Lszjr4Q578rMh6+pYYGgjNEW+ddkiCWUHIUg8uZrBj7cD2OdM9jVbjV1OreOkgYFcMsOPdA1A8tCifb+FJI3Ez9Jn4yXWStZorIWCR2Mh+Rg=
+     procedure_id : 1886562486396943899
+     type_code : 12
+     code : |1+
+      // Résumé : Stocke en mémoire dans un tableau la liste des mails de Outlook 
+      // Syntaxe :
+      //AffecteTableauItem (<i>)
+      //
+      // Paramètres :
+      // 	i : Indice dans le tableau du mail à ajouter
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteTableauItem(i)
+      
+      //Création d'une nouvelle instance Mail
+      clEmailEnCours est un cmail(:m_pautItem) 
+      
+      //Affectation de ses membres avec ce qui vient d'être lu dans Outlook
+      clEmailEnCours.RemplitEmail(objet)
+      
+      //Ajout de l'email dans le tableau à l'indice spécifié
+      :m_ptabItems[i] = clEmailEnCours
+     type : 458752
+   -
+     name : LibereTabDyn
+     procedure_id : 1886566042629971661
+     type_code : 12
+     code : |1+
+      Procédure VIRTUELLE LibereTabDyn()
+      
+      // Pièces jointes de tous les messages
+      i est un entier
+      POUR i = 1 _A_ Dimension(:m_ptabItems)
+      	:m_ptabItems[i]:LibereTabDyn()
+      FIN
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d12f5513d
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

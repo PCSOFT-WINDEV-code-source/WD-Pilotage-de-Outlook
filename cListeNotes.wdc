@@ -1,0 +1,83 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cListeNotes
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2e7c75044049f3
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cListeNotes est une classe
+      	hérite de cListeEntités
+      	
+      Fin
+      
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAADC63Y8kFgZ+n0OAQr41M/UV0JIosmi1IJxPMeuY8mSqN4c1C5RtNvlFB104S7Jt+FvmKTq7PLttMYvFH4ybIYSPfRJieKUOmqTEHq1/eLjSbwu0ZSj25bRLBuhVl3/cTjAy4EM0hbeLfKf37fAtzxJxN6xtWywf0BKIT0oA52jRRbuS+RmUngB05ZtU+9lRyDB0wRoPO2Y/Ny9Bfprlz2pm15POA==
+     procedure_id : 1886582135939222003
+     type_code : 27
+     code : |1+
+      Procédure Constructeur()
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cListeEntités(::CST_NOTES)
+      
+      //Liste des notes de Outlook
+      :m_ptabItems=allouer un tableau de 0 cnote
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1886582135939287539
+     type_code : 28
+     code : |1+
+      Procédure Destructeur()
+      
+     type : 655360
+   -
+     name : AffecteTableauItem
+     internal_properties : CAAAAAgAAAB+sRnl5ssiE9pdHgeMqquKZl6gxyU8CMSZheGhc+0bQfherOzBQqs+H5V1p0cner94xmSQpWStEudng06DdI3VrOYZfLwPG6+acMVRdKdjbMD/oPA+Dst1orOleVaBKpByXRNrtTTSYcCD3sqVjLbEr3Wd+fFQ9C4IFZGmsOAKXc0wzm5XJW3VTzgYpqfvGot8u5hvbEtkgtgIV9QEzlnq
+     procedure_id : 1886583716501383501
+     type_code : 12
+     code : |1+
+      // Résumé : Stocke en mémoire dans un tableau la liste des notes de Outlook 
+      // Syntaxe :
+      //AffecteTableauItem (<i>)
+      //
+      // Paramètres :
+      // 	i : Indice dans le tableau de la note à ajouter
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteTableauItem(i)
+      
+      //Création d'une nouvelle instance Note
+      clNoteEnCours est un cNote(:m_pautItem) 
+      
+      //Affectation de ses membres avec ce qui vient d'être lu dans Outlook
+      clNoteEnCours.RemplitNote(objet)
+      
+      //Ajout de la note dans le tableau à l'indice spécifié
+      :m_ptabItems[i] = clNoteEnCours
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d1342518b
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

@@ -1,0 +1,84 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cListeTaches
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1a2e87350a1f4986
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cListeTaches est une classe
+      	hérite de cListeEntités
+      	
+      Fin
+      
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     internal_properties : CAAAAAgAAACCKzZ8QDh5mn3O4ap4lO8U92KowqkC9GKxfGdOI0lyaP68dI6x1PvF1F2UQW7JlyEPOASKTNINFIbvdB5yLCaS3ZTp6YJ0moqTUJpVfWJDiRwOQcTT66ahnGvRBm0PgSjQu/G8gibuPeJvTyfQx4x5FI4h5RzAjxC6sS3Y0+1zteYee1TWosiRQ+Ydw3/1l9ARg/QYbL1oDMyN9Sq7Zw3pW54P+A==
+     procedure_id : 1886593955787721094
+     type_code : 27
+     code : |1+
+      Procédure Constructeur()
+      
+      // Appel au constructeur de la classe mère
+      // pour l'initialisation du dialogue avec Outlook
+      Constructeur cListeEntités(::CST_TACHES) 
+      
+      //Liste des tâches de Outlook
+      :m_ptabItems=allouer un tableau de 0 ctache
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1886593955787786630
+     type_code : 28
+     code : |1+
+      Procédure Destructeur()
+      
+     type : 655360
+   -
+     name : AffecteTableauItem
+     internal_properties : CAAAAAgAAAC+8dklpovi05qd3sdM6mvKJh7QR8U8aGRZJaHBk6074Xh+7KxhAkveH7X1x6dnGl/4ZmQQheTNcqdHgy6jNK31bEZZPNyP+0/aUMXxFKdDTLDvkMDOHrsF0qN1iaYxusBizYP7hcRC8fBz7trlPEZ03yXNiUFgJD44xaF2wNAajX1g/r5ntV3lf6hoNjev2ss8+1gvrAskwhjIl5TEDpmq
+     procedure_id : 1886595304408093155
+     type_code : 12
+     code : |1+
+      // Résumé : Stocke en mémoire dans un tableau la liste des tâches de Outlook 
+      // Syntaxe :
+      // AffecteTableauItem (<i>)
+      //
+      // Paramètres :
+      // 	i : Indice dans le tableau de la tâche à ajouter
+      // Valeur de retour :
+      // 	Aucune
+      
+      Procédure VIRTUELLE AffecteTableauItem(i)
+      
+      //Création d'une nouvelle instance Tache
+      clTâcheEnCours est un ctache(:m_pautItem) 
+      
+      //Affectation de ses membres avec ce qui vient d'être lu dans Outlook
+      clTâcheEnCours.RemplitTache(objet)
+      
+      //Ajout de la tâche dans le tableau à l'indice spécifié
+      :m_ptabItems[i] =  clTâcheEnCours
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1fc4f76d1310516c
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
